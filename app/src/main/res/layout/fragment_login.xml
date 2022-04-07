@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".Login">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="20sp"
+        android:id="@+id/login_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"/>
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/et_email"
+        android:hint="Masukkan email"
+        android:background="@drawable/edit_text_background"
+        android:layout_below="@id/login_tv"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="50dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/et_password"
+        android:hint="Masukkan password"
+        android:background="@drawable/edit_text_background"
+        android:layout_below="@id/et_email"
+        android:layout_marginHorizontal="20dp"
+        android:inputType="textPassword" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_btn"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:layout_above="@id/belum_punya_punya_akun_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"/>
+
+    <TextView
+        android:id="@+id/belum_punya_punya_akun_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Belum punya akun?"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+</RelativeLayout>
