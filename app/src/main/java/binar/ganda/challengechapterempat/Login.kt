@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class Login : Fragment() {
 
     private lateinit var shared : SharedPreferences
+    private var userDB : UserDatabase? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,34 +29,36 @@ class Login : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        shared = this.requireActivity()
-            .getSharedPreferences("Notes", Context.MODE_PRIVATE)
+        shared = requireContext().getSharedPreferences("USER", Context.MODE_PRIVATE)
+
+
+        belum_punya_punya_akun_btn.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_login_to_registrasi)
+        }
 
         login_btn.setOnClickListener {
 
             val emailLogin = et_email.text.toString()
             val passwordLogin = et_password.text.toString()
 
-            val getEmail =shared.getString("EMAIL", "")
+            val getEmail = shared.getString("EMAIL", "")
             val getPassword = shared.getString("PASSWORD", "")
 
             if (emailLogin == getEmail && passwordLogin == getPassword) {
-                view?.let {
-                    Navigation.findNavController(view).navigate(R.id.action_login_to_home2)
-                }
+                    view?.let {
+                        Navigation.findNavController(view).navigate(R.id.action_login_to_home2)
+                    }
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Email dan Password anda salah, anda dapat Registrasi terlebih dahulu",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+                    Toast.makeText(
+                        requireContext(),
+                        "Email dan Password anda salah, anda dapat Registrasi terlebih dahulu",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    }
+
         }
 
-        belum_punya_punya_akun_btn.setOnClickListener {
-            view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_login_to_registrasi)
-            }
-        }
     }
+
+
 }

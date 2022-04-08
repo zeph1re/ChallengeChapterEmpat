@@ -18,18 +18,16 @@
         android:layout_marginBottom="20dp"/>
 
 
-
     <EditText
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/et_email"
-        android:hint="Masukkan email"
-        android:background="@drawable/edit_text_background"
         android:layout_below="@id/login_tv"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="50dp"
-        />
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="Masukkan email" />
 
     <EditText
         android:layout_width="match_parent"

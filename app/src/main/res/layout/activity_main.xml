@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragment_container_view_tag"
-        android:name="binar.ganda.challengechapterempat.Login"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph="@navigation/nav_component"
         app:defaultNavHost="true"/>
 
