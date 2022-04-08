@@ -24,10 +24,10 @@ class NotesAdapter(private val listNotes: List<Notes>): RecyclerView.Adapter<Not
         return   ViewHolder(layout)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.title_tv.text = listNotes[position].title
         holder.itemView.desc_tv.text = listNotes[position].desc
-
 
         //DeleteData
         holder.itemView.delete_btn.setOnClickListener {
@@ -69,6 +69,8 @@ class NotesAdapter(private val listNotes: List<Notes>): RecyclerView.Adapter<Not
             val customDialog = AlertDialog.Builder(it.context)
             customDialog.setView(view)
             customDialog.create()
+            customDialog.setCancelable(true)
+            customDialog.show()
 
             view.et_edit_title.setText(listNotes[position].title)
             view.et_edit_desc.setText(listNotes[position].desc)

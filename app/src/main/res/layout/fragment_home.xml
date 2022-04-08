@@ -38,10 +38,10 @@
         android:id="@+id/notes_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:reverseLayout="false"
         android:layout_below="@id/home_tv"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:reverseLayout="false" />
 
     <ImageButton
         android:layout_width="50dp"

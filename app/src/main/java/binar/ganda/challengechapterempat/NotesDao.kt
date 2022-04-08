@@ -9,7 +9,7 @@ interface NotesDao {
     fun insertNotes(notes: Notes) : Long
 
     @Query ("SELECT * FROM Notes")
-    fun getAllNotes () : List<Notes>
+    fun getAllNotes() : List<Notes>
 
     @Update
     fun updateNotes(notes: Notes) : Int

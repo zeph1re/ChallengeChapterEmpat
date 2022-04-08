@@ -31,31 +31,33 @@ class Login : Fragment() {
 
         shared = requireContext().getSharedPreferences("USER", Context.MODE_PRIVATE)
 
-
         belum_punya_punya_akun_btn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_login_to_registrasi)
         }
 
         login_btn.setOnClickListener {
+            if (et_email.text.isNotEmpty() && et_password.text.isNotEmpty()){
 
-            val emailLogin = et_email.text.toString()
-            val passwordLogin = et_password.text.toString()
+                userDB = UserDatabase.getInstance(requireContext())
 
-            val getEmail = shared.getString("EMAIL", "")
-            val getPassword = shared.getString("PASSWORD", "")
+                val emailLogin = et_email.text.toString()
+                val passwordLogin = et_password.text.toString()
 
-            if (emailLogin == getEmail && passwordLogin == getPassword) {
-                    view?.let {
-                        Navigation.findNavController(view).navigate(R.id.action_login_to_home2)
-                    }
+                val user = userDB?.userDao()?.getUserData(emailLogin, passwordLogin)
+
+                if (user.isNullOrEmpty()) {
+                    Toast.makeText(requireContext(),"Email/Password Salah", Toast.LENGTH_LONG).show()
+                } else {
+                    val sf = shared.edit()
+                    sf.putString("USERNAME", user)
+                    sf.apply()
+
+                    Navigation.findNavController(view).navigate(R.id.action_login_to_home2)
+                }
+
             } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Email dan Password anda salah, anda dapat Registrasi terlebih dahulu",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    }
-
+                Toast.makeText(requireContext(),"Isi Email dan Password", Toast.LENGTH_LONG).show()
+            }
         }
 
     }

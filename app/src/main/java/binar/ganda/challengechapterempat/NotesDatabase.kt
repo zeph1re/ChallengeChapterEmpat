@@ -15,7 +15,7 @@ abstract class NotesDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(NotesDatabase::class){
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        NotesDatabase::class.java,"Notes.db").build()
+                        NotesDatabase::class.java,"Notes.db").allowMainThreadQueries().build()
                 }
             }
             return INSTANCE

@@ -15,7 +15,7 @@ abstract class UserDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(UserDatabase::class){
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        UserDatabase::class.java,"User.db").build()
+                        UserDatabase::class.java,"User.db").allowMainThreadQueries().build()
                 }
             }
             return INSTANCE
