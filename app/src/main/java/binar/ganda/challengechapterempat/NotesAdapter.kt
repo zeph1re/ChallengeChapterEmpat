@@ -45,6 +45,7 @@ class NotesAdapter(private val listNotes: List<Notes>): RecyclerView.Adapter<Not
                         (holder.itemView.context as MainActivity).runOnUiThread {
                             if (result != 0 ) {
                                 Toast.makeText(it.context, "Data ${listNotes[position].title} Terhapus", Toast.LENGTH_LONG).show()
+                                (holder.itemView.context as MainActivity).recreate()
                             } else {
                                 Toast.makeText(it.context, "Data ${listNotes[position].title} Gagal terhapus", Toast.LENGTH_LONG).show()
                             }
@@ -65,37 +66,37 @@ class NotesAdapter(private val listNotes: List<Notes>): RecyclerView.Adapter<Not
             notesDB = NotesDatabase.getInstance(it.context)
 
             //create custom layout
-            val view = LayoutInflater.from(it.context).inflate(R.layout.custom_dialog_edit, null, false)
+            val custom = LayoutInflater.from(it.context).inflate(R.layout.custom_dialog_edit, null, false)
             val customDialog = AlertDialog.Builder(it.context)
-            customDialog.setView(view)
+            customDialog.setView(custom)
             customDialog.create()
             customDialog.setCancelable(true)
-            customDialog.show()
 
-            view.et_edit_title.setText(listNotes[position].title)
-            view.et_edit_desc.setText(listNotes[position].desc)
+            custom.et_edit_title.setText(listNotes[position].title)
+            custom.et_edit_desc.setText(listNotes[position].desc)
 
-            view.edit_dialog_btn.setOnClickListener {
-                val newTitle = view.et_edit_title.text.toString()
-                val newDesc = view.et_edit_desc.text.toString()
+            custom.edit_dialog_btn.setOnClickListener {
+                val newTitle = custom.et_edit_title.text.toString()
+                val newDesc = custom.et_edit_desc.text.toString()
 
                 listNotes[position].title = newTitle
                 listNotes[position].desc = newDesc
 
                 GlobalScope.async {
-                    val result = notesDB?.notesDao()?.insertNotes(listNotes[position])
-                    (view.context as MainActivity).runOnUiThread {
-                        if (result != 0.toLong()){
-                            Toast.makeText(it.context, "Berhasil", Toast.LENGTH_LONG).show()
-                            (view.context as MainActivity).recreate()
+                    val result = notesDB?.notesDao()?.updateNotes(listNotes[position])
+                    (custom.context as MainActivity).runOnUiThread {
+                        if (result != 0){
+                            Toast.makeText(it.context, "${listNotes[position].title} Updated", Toast.LENGTH_LONG).show()
+                            (custom.context as MainActivity).recreate()
                         } else {
-                            Toast.makeText(it.context, "Gagal", Toast.LENGTH_LONG).show()
+                            Toast.makeText(it.context, "Failed", Toast.LENGTH_LONG).show()
                         }
                     }
 
                 }
 
             }
+            customDialog.show()
         }
     }
 

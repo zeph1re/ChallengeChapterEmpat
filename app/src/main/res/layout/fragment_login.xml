@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/login_btn"
         android:text="Login"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:backgroundTint="@color/cardview_dark_background"
         android:layout_above="@id/belum_punya_punya_akun_btn"
